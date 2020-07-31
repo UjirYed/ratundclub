@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+<title> Ratund Club</title>
+{% endblock %}
+
+{% block body %}
+
+<nav class="navbar navbar-expand-md navbar-light">
+    <a href="/" class="navbar-brand">Ratund Club</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar6">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse justify-content-stretch" id="navbar6">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link active" href="{{ url_for('addchannel') }}">Add Channel <span class="sr-only">Home</span></a>
+            </li>
+            <li class="nav-item dropdown active">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-list"></span><span class="d-xl-block d-none"></span><span class="d-none d-sm-inline px-1">Live Channels</span> </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  {% for channel in CurrentChannels %}
+                    <a class="dropdown-item" href="/channel/{{ channel }}">{{ channel }}</a>
+                  {% endfor %}
+                </div>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link disabled" style="color:red;" href="#">{{ session["username"] }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ url_for('logout') }}">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<hr>
+<div class="row">
+  <div class="col-5">
+    <div class="alert alert-primary" role="alert">
+      This Site is not liable for anything, including Wandering Tunds. If you happen to see one, please report it to the nearest agency.
+    </div>
+  </div>
+
+</div>
+
+
+{% endblock %}

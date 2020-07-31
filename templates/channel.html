@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block title %}
+<title>{{ channel }}</title>
+<script src="../static/test.js"></script>
+{% endblock %}
+
+{% block body %}
+<nav class="navbar navbar-expand-md navbar-light">
+    <a href="{{ url_for('index') }}" class="navbar-brand">Ratund Club</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar6">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse justify-content-stretch" id="navbar6">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link active" href="{{ url_for('addchannel') }}">Add Channel <span class="sr-only">Home</span></a>
+            </li>
+            <li class="nav-item dropdown active">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-list"></span><span class="d-xl-block d-none"></span><span class="d-none d-sm-inline px-1">Live Channels</span> </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  {% for channel in CurrentChannels %}
+                    <a class="dropdown-item" href="/channel/{{ channel }}">{{ channel }}</a>
+                  {% endfor %}
+                </div>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link disabled" style="color:red;" href="#">{{ session["username"] }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ url_for('logout') }}">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<h1>{{ channel }}</h1>
+<textarea id="chat" cols="80" rows="10" readonly style="resize: none;">
+  {%- if messages -%}
+    {%- for message in messages -%}
+        <{{ message[0] }}> - [{{ message[1] }}]: {{ message [2] }} {{'\n'}}
+    {%- endfor -%}
+    {{ '----- Old Messages -----' }}{{- '\n' -}}
+{%- endif -%}
+
+</textarea>
+
+<div id="message-box">
+    <div class="form-border">
+        <div class="form-row">
+            <div class="form-group col-sm-4">
+                <div class="input-group">
+                    <input id="message" class="form-control" size="50" autocomplete="off" autofocus>
+                </div>
+            </div>
+            <div class="form-group col-sm-2">
+                <button id="send-button" class="btn btn-success" type="reset">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
