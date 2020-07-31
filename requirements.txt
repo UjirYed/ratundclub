@@ -9,7 +9,7 @@ Flask==1.1.2
 Flask-SocketIO==4.3.0
 # gevent-websocket==0.10.1
 greenlet==0.4.16
-gunicorn==18.0.0
+gunicorn==19.5.0
 idna==2.9
 itsdangerous==1.1.0
 Jinja2==2.11.2
